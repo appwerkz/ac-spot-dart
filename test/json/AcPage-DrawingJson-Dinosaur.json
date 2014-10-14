@@ -1,0 +1,16 @@
+{
+    "meta": {
+        "limit": 1000, 
+        "next": null, 
+        "offset": 0, 
+        "previous": null, 
+        "total_count": 1
+    }, 
+    "objects": [
+        {
+            "ac_data": "{\"fyAc\":{\"description\":\"Sketching a dinosaur\",\"lexile_level\":\"\",\"icon\":\"https://www.filepicker.io/api/file/f6tnHex1TSyV1uA07iTZ\",\"fyAcPages\":[{\"seq_index\":0,\"acPageId\":3221,\"page_name\":\"Drawing Page\",\"au_classname\":\"FyLineDrawing\",\"gt_id\":null,\"raw_data\":\"{\\\"title\\\":{\\\"text\\\":\\\"Draw a dinosaur. Use the sketch if you need.\\\"},\\\"fy-image\\\":{\\\"img-url\\\":\\\"https://www.filepicker.io/api/file/f6tnHex1TSyV1uA07iTZ\\\",\\\"height\\\":268.0203045685279,\\\"width\\\":449.99999999999994}}\",\"ac_type_name\":\"Drawing\"}],\"ccid\":\"\",\"ac_price\":0,\"learning_obj\":\"\",\"date_published\":\"2014-10-02T10:25:24.834488\",\"au_tt_name\":\"BasicBg\",\"keywords\":\"\",\"tt_id\":\"2\",\"name\":\"Draw a dinosaur\",\"author_type\":1,\"scid\":\"\",\"fyAcId\":\"624\",\"lesson_plan_urls\":\"\"}}", 
+            "ac_id": "624", 
+            "resource_uri": "/api/v1/fyactivitysnapshot/624/"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+name: ac_spot_dart
+version: 0.0.1
+author: James Hurford <terrasea@gmail.com>
+homepage: https://www.frolyc.com/
+environment:
+  sdk: '>=1.0.0 <2.0.0'
+dependencies:
+  browser: any
+  polymer: any
+dev_dependencies:
+  scheduled_test: any

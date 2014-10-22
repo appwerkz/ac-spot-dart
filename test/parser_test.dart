@@ -3,8 +3,11 @@ part of ac_spot_dart_test;
 parser_test() {
   group('[FyActivityParser]', () {
     var url = 'json/AcPage-DrawingJson-Dinosaur.json';
+    var url2 = 'json/AcPage-MultimediaJson-PeriodicTable.json';
     var parser = new FyActivityParser();
     var activity_page;
+    var activity_page2;
+
     setUp(() {
       schedule(() {
         var completer = new Completer();
@@ -12,6 +15,18 @@ parser_test() {
         HttpRequest.getString(url).then((data) {
           Map json = JSON.decode(data);
           activity_page = parser.parse(json['objects'][0]['ac_data']);
+          completer.complete();
+        });
+
+        return completer.future;
+      });
+
+      schedule(() {
+        var completer = new Completer();
+
+        HttpRequest.getString(url2).then((data) {
+          Map json = JSON.decode(data);
+          activity_page2 = parser.parse(json['objects'][0]['ac_data']);
           completer.complete();
         });
 
@@ -106,6 +121,13 @@ parser_test() {
     test('FyLineDrawing has correct subclassname', () {
       schedule(() {
         expect(activity_page.pages[0].subclassname, isNull);
+      });
+    });
+
+
+    test('activity page 2 first page in list is a FyAcComponentMInfo', () {
+      schedule(() {
+        expect(activity_page2.pages[0] is FyAcComponentMInfo, isTrue);
       });
     });
   });

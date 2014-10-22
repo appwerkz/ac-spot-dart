@@ -17,7 +17,6 @@ class FyActivityParser {
     var game_template = activity.containsKey('au_tt_name') ? activity['au_tt_name'] : '';
     var pages = activity.containsKey('fyAcPages') ? activity['fyAcPages'] : '';
 
-    print(pages[0]['raw_data']);
     return new Activity.create(id, name, icon, description, game_template, _createPageList(pages));
   }
 
@@ -25,7 +24,7 @@ class FyActivityParser {
       new ActivityPage.create(
                               page['acPageId'],
                               page['page_name'],
-                              page['raw_data'],
+                              JSON.decode(page['raw_data']),
                               page['au_tt_name'],
                               page['au_classname'],
                               page['au_subclassname'])

@@ -1,0 +1,20 @@
+<link rel="import" href="../../../packages/polymer/polymer.html">
+
+<link rel="import" href="../../../packages/core_elements/core_icon.html">
+
+<polymer-element name="fy-title" attributes="text icon" noscript>
+  <template>
+    <style>
+    :host {
+      display: block;
+      background-color: #fdcb0a;
+    }
+    </style>
+    <header horizontal center-justified layout>
+      <template if="{{ icon != null }}">
+        <core-icon _src="{{ icon }}"></core-icon>
+      </template>{{ text }}
+    </header>
+  </template>
+  <script type="application/dart" src="fy_linedrawing.dart"></script>
+</polymer-element>

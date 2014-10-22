@@ -1,0 +1,18 @@
+<link rel="import" href="../../../packages/polymer/polymer.html">
+
+<link rel="import" href="../../../packages/ac_spot_dart/elements/fy_title.html">
+
+<polymer-element name="fy-linedrawing" attributes="titleText titleIcon">
+  <template>
+    <style>
+    :host {
+      display: block;
+    }
+    </style>
+    <header horizontal center-justified layout>
+      <fy-title id="header" text="{{ titleText }}" icon="{{ titleIcon }}"></fy-title>
+    </header>
+    
+  </template>
+  <script type="application/dart" src="fy_linedrawing.dart"></script>
+</polymer-element>

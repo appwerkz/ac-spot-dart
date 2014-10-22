@@ -6,6 +6,10 @@ environment:
   sdk: '>=1.0.0 <2.0.0'
 dependencies:
   browser: any
+  core_elements: any
+  paper_elements: any
   polymer: any
 dev_dependencies:
   scheduled_test: any
+transformers:
+- polymer

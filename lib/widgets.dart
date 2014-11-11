@@ -1,40 +1,40 @@
 part of frolyc.ac_spot;
 
-class Title {
+class Title extends Observable {
   final title;
 
-  const Title(this.title);
+  Title(this.title);
 
   factory Title.create(title) => new Title(title);
 }
 
 
-class Image {
+class Image extends Observable {
   final url;
   final width;
   final height;
 
-  const Image(this.url, this.width, this.height);
+  Image(this.url, this.width, this.height);
 
   factory Image.create(url, width, height) => new Image(url, width, height);
 }
 
 
-class Video {
+class Video extends Observable {
   final url;
   final caption;
 
-  const Video(this.url, this.caption);
+  Video(this.url, this.caption);
 
 
   factory Video.create(url, caption) => new Video(url, caption);
 }
 
 
-class Text {
+class Text extends Observable {
   final text;
 
-  const Text(this.text);
+  Text(this.text);
 
 
   factory Text.create(text) => new Text(text);

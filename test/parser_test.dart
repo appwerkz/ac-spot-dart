@@ -130,5 +130,49 @@ parser_test() {
         expect(activity_page2.pages[0] is FyAcComponentMInfo, isTrue);
       });
     });
+
+
+    test('FyAcComponentMInfo has correct title', () {
+      schedule(() {
+        expect(activity_page2.pages[0].title.title, 'Intro To Periodic Table ');
+      });
+    });
+
+    test('FyAcComponentMInfo has correct image', () {
+      schedule(() {
+        expect(activity_page2.pages[0].image.url, 'https://www.filepicker.io/api/file/PUPuaMuLT0OKmFPxaDhF');
+        expect(activity_page2.pages[0].image.width, 450);
+        expect(activity_page2.pages[0].image.height, 346.69565217391306);
+      });
+    });
+
+    test('FyAcComponentMInfo has correct text', () {
+      schedule(() {
+        expect(activity_page2.pages[0].text.text, contains('&nbsp;is a tabular arrangement of the&nbsp;'));
+      });
+    });
+
+
+    test('FyAcComponentMInfo has correct video', () {
+      schedule(() {
+        expect(activity_page2.pages[0].video.url, 'https://www.youtube.com/watch?v=Apr7MdbHGQo');
+      });
+    });
+
+
+    test('FyLineDrawing has correct title', () {
+      schedule(() {
+        expect(activity_page.pages[0].title.title, 'Draw a dinosaur. Use the sketch if you need.');
+      });
+    });
+
+
+    test('FyLineDrawing has correct image', () {
+      schedule(() {
+        expect(activity_page.pages[0].image.url, 'https://www.filepicker.io/api/file/f6tnHex1TSyV1uA07iTZ');
+        expect(activity_page.pages[0].image.width, 449.99999999999994);
+        expect(activity_page.pages[0].image.height, 268.0203045685279);
+      });
+    });
   });
 }

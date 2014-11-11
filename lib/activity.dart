@@ -40,8 +40,13 @@ abstract class ActivityPage {
 }
 
 class FyLineDrawing extends ActivityPage {
+  var title;
+  var image;
 
   FyLineDrawing(id, name, raw_data, template, classname, subclassname) : super(id, name, raw_data, template, classname, subclassname) {
+    title = new Title.create(raw_data['title']['text']);
+    var img_data = raw_data['fy-image'];
+    image = new Image.create(img_data['img-url'], img_data['width'], img_data['height']);
   }
 }
 

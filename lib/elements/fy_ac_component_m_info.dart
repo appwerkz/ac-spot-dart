@@ -37,7 +37,6 @@ class FyAcComponentMInfoElement extends PolymerElement {
   playVideo(Event e) {
     e.target.remove();
     var url = mediaVideo.url.replaceFirst('watch\?v\=', 'embed/');
-    print(url);
     var video = new Element.iframe()
       ..id = 'video'
       ..src = "$url"

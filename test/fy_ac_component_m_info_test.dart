@@ -5,17 +5,22 @@ class FyAcComponentMInfoComponent extends PageComponent {
 
   clickPlay() => component.fire('tap', onNode: component.shadowRoot.querySelector('#play-button'));
 
-  bool get hasVideo => component.shadowRoot.querySelector('#video') != null;
-  bool get hasImage => component.shadowRoot.querySelector('#image') != null;
-  bool get hasText => component.shadowRoot.querySelector('#text') != null;
+  Element get video => component.shadowRoot.querySelector('#video');
+  Element get image => component.shadowRoot.querySelector('#image');
+  Element get text => component.shadowRoot.querySelector('#text');
 
-  String get text => component.shadowRoot.querySelector('#text').text;
+  bool get hasVideo => video != null && video is IFrameElement;// && video.src == component.mediaVideo.url;
+  bool get hasImage => image != null;
+  bool get hasText => text != null;
+
+  String get textContent => component.shadowRoot.querySelector('#text').text;
 }
 
 fy_ac_component_m_info_test() {
   group('[fy_ac_component_m_info]', () {
     FyAcComponentMInfoComponent component;
     Activity activity_page;
+
     setUp(() {
       schedule(() => Polymer.onReady);
 
@@ -47,6 +52,8 @@ fy_ac_component_m_info_test() {
 
         return component.flush();
       });
+
+      currentSchedule.onComplete.schedule(() => component.component.remove());
     });
 
 

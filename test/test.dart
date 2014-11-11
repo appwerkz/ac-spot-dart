@@ -11,7 +11,7 @@ import 'package:ac_spot_dart/ac_spot.dart';
 
 part 'parser_test.dart';
 part 'fy_ac_component_m_info_test.dart';
-
+part 'fy_linedrawing_test.dart';
 
 main() {
   useHtmlConfiguration(true);
@@ -20,6 +20,7 @@ main() {
 
   parser_test();
   fy_ac_component_m_info_test();
+  fy_linedrawing_test();
 }
 
 createElement(String html) =>

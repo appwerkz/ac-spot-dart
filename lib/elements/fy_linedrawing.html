@@ -4,6 +4,10 @@
 <link rel="import" href="../../../packages/core_elements/core_toolbar.html">
 <link rel="import" href="../../../packages/core_elements/core_icon.html">
 
+<link rel="import" href="../../../packages/paper_elements/paper_button.html">
+
+<link rel="import" href="../../../packages/ac_spot_dart/elements/fy_drawingtools.html">
+
 <polymer-element name="fy-linedrawing" attributes="drawingTitle drawingImage">
   <template>
     <style>
@@ -30,10 +34,19 @@
       width: 75%;
       height: 500px;
     }
+    
+    paper-button {
+      color: white;
+    }
+    
+    paper-button#save {
+      background-color: red;
+    }
     </style>
     <core-header-panel layout vertical>
-      <core-toolbar horizontal layout center-center>{{ drawingTitle.title }}</core-toolbar>
-      <div id="drawing" vertical layout center-center>
+      <core-toolbar horizontal layout center-center>{{ drawingTitle.title }} <paper-button id="cancel" label="Cancel" hidden></paper-button><paper-button id="save" label="Save" hidden></paper-button></core-toolbar>
+      <div id="drawing" horizontal layout center-center>
+        <fy-drawingtools id="drawing-tools" hidden></fy-drawingtools>
         <div id="splash_text" on-tap="{{ startDrawing }}" vertical layout center-center>Touch here to draw</div>
       </div>
     </core-header-panel>    

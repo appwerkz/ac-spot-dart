@@ -27,6 +27,7 @@ int main() {
               node.hidden = false;
               break;
           }
+          break;
         case 'FyLineDrawing':
           var node = querySelector('fy-linedrawing');
           node.drawingTitle = activity_page.pages[0].title;
@@ -38,11 +39,4 @@ int main() {
   });
 
   return 0;
-}
-
-createElement(String html) =>
-  new Element.html(html, treeSanitizer: new NullTreeSanitizer());
-
-class NullTreeSanitizer implements NodeTreeSanitizer {
-  void sanitizeTree(node) {}
 }

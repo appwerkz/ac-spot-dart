@@ -1,10 +1,117 @@
 <link rel="import" href="../../../packages/polymer/polymer.html">
 
+<link rel="import" href="../../../packages/core_elements/core_icons.html">
 <link rel="import" href="../../../packages/core_elements/core_icon_button.html">
+<link rel="import" href="../../../packages/ac_spot_dart/elements/fy_icons.html">
 
 <polymer-element name="fy-drawingtools">
   <template>
-  
+    <style>
+       core-icon-button.red /deep/ core-icon {
+        fill: red;
+        stroke: black;
+        stroke-width: 1;
+      }
+      
+      core-icon-button.white /deep/ core-icon {
+        fill: white;
+        stroke: black;
+        stroke-width: 1;
+      }
+      
+      core-icon-button.black /deep/ core-icon {
+        fill: black;
+        stroke: black;
+        stroke-width: 1;
+      }
+      
+      core-icon-button.purple /deep/ core-icon {
+        fill: purple;
+        stroke: black;
+        stroke-width: 1;
+      }
+      
+      core-icon-button.green /deep/ core-icon {
+        fill: green;
+        stroke: black;
+        stroke-width: 1;
+      }
+      
+      core-icon-button.blue /deep/ core-icon {
+        fill: blue;
+        stroke: black;
+        stroke-width: 1;
+      }
+      
+      core-icon-button.orange /deep/ core-icon {
+        fill: orange;
+        stroke: black;
+        stroke-width: 1;
+      }
+      
+      core-icon-button.brown /deep/ core-icon {
+        fill: brown;
+        stroke: black;
+        stroke-width: 1;
+      }
+      
+      core-icon-button.yellow /deep/ core-icon {
+        fill: yellow;
+        stroke: black;
+        stroke-width: 1;
+      }
+      
+      core-icon-button.thin-stroke /deep/ core-icon {
+        stroke: black;
+        stroke-width: 1;
+      }
+      
+      core-icon-button.medium-stroke /deep/ core-icon {
+        stroke: black;
+        stroke-width: 2;
+      }
+      
+      core-icon-button.thick-stroke /deep/ core-icon {
+        stroke: black;
+        stroke-width: 5;
+      }
+      core-icon-button.redo  /deep/ core-icon {
+        transform: scaleX(-1);
+        filter: FlipH;
+      }
+    </style>
+    <div layout vertical>
+      <div>
+        <core-icon-button class="white" icon="fy-icons:colour-picker"></core-icon-button>
+        <core-icon-button class="red" icon="fy-icons:colour-picker"></core-icon-button>
+        <core-icon-button class="black" icon="fy-icons:colour-picker"></core-icon-button>
+      </div>
+      <div>
+        <core-icon-button class="purple" icon="fy-icons:colour-picker"></core-icon-button>
+        <core-icon-button class="green" icon="fy-icons:colour-picker"></core-icon-button>
+        <core-icon-button class="blue" icon="fy-icons:colour-picker"></core-icon-button>
+      </div>
+      <div>
+        <core-icon-button class="orange" icon="fy-icons:colour-picker"></core-icon-button>
+        <core-icon-button class="brown" icon="fy-icons:colour-picker"></core-icon-button>
+        <core-icon-button class="yellow" icon="fy-icons:colour-picker"></core-icon-button>
+      </div>
+      <div>
+        <core-icon-button class="thin-stroke" icon="fy-icons:curved-stroke"></core-icon-button>
+        <core-icon-button class="medium-stroke" icon="fy-icons:curved-stroke"></core-icon-button>
+        <core-icon-button class="thick-stroke" icon="fy-icons:curved-stroke"></core-icon-button>
+      </div>
+      <div>
+        <core-icon-button icon="icons:create"></core-icon-button>
+        <core-icon-button icon="fy-icons:eraser"></core-icon-button>
+        <core-icon-button icon="icons:clear"></core-icon-button>
+      </div>
+      <div>
+        <core-icon-button class="redo" icon="icons:undo"></core-icon-button>
+        <core-icon-button icon="icons:undo"></core-icon-button>
+        <core-icon-button icon="fy-icons:insert-text"></core-icon-button>
+      </div>
+    </div>
   </template>
   <script type="application/dart" src="fy_drawingtools.dart"></script>
 </polymer-element>

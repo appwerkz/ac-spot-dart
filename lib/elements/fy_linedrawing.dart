@@ -35,8 +35,12 @@ class FyLineDrawingElement extends PolymerElement {
         var height = 0;
 
         context2d.drawImageScaled(image, 0, 0, drawingImage.width, drawingImage.height);
+        $['drawing-tools'].hidden = false;
+        $['save'].hidden = false;
+        $['cancel'].hidden = false;
     });
 
     div.replaceWith(canvas);
+
   }
 }

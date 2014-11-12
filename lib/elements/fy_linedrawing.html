@@ -42,11 +42,15 @@
     paper-button#save {
       background-color: red;
     }
+    
+    fy-drawingtools#drawing-tools {
+      background-color: #fdcb0a;
+    }
     </style>
     <core-header-panel layout vertical>
       <core-toolbar horizontal layout center-center>{{ drawingTitle.title }} <paper-button id="cancel" label="Cancel" hidden></paper-button><paper-button id="save" label="Save" hidden></paper-button></core-toolbar>
       <div id="drawing" horizontal layout center-center>
-        <fy-drawingtools id="drawing-tools" hidden></fy-drawingtools>
+        <fy-drawingtools id="drawing-tools" hidden flex self-stretch></fy-drawingtools>
         <div id="splash_text" on-tap="{{ startDrawing }}" vertical layout center-center>Touch here to draw</div>
       </div>
     </core-header-panel>    

@@ -4,9 +4,11 @@ parser_test() {
   group('[FyActivityParser]', () {
     var url = 'json/AcPage-DrawingJson-Dinosaur.json';
     var url2 = 'json/AcPage-MultimediaJson-PeriodicTable.json';
+
     var parser = new FyActivityParser();
     var activity_page;
     var activity_page2;
+
 
     setUp(() {
       schedule(() {
@@ -172,6 +174,71 @@ parser_test() {
         expect(activity_page.pages[0].image.url, 'https://www.filepicker.io/api/file/f6tnHex1TSyV1uA07iTZ');
         expect(activity_page.pages[0].image.width, 449.99999999999994);
         expect(activity_page.pages[0].image.height, 268.0203045685279);
+      });
+    });
+
+    group('cause_effect', () {
+      var url3 = 'json/cause-effect.json';
+      var activity_page3;
+      setUp(() {
+        schedule(() {
+          var completer = new Completer();
+
+          HttpRequest.getString(url3).then((data) {
+            Map json = JSON.decode(data);
+            activity_page3 = parser.parse(json['objects'][0]['ac_data']);
+            completer.complete();
+          });
+
+          return completer.future;
+        });
+      });
+
+      test('activity page 3 first page in list is a FyTextCauseEffect', () {
+        schedule(() {
+          expect(activity_page3.pages[0] is FyTextCauseEffect, isTrue);
+        });
+      });
+
+      test('FySet Question is "Match the cause with the effect."', () {
+        schedule(() {
+          expect(activity_page3.pages[0].fySet.question.title, 'Match the cause with the effect.');
+        });
+      });
+
+
+      solo_test('Title is "Cause-Effect Page"', () {
+        schedule(() {
+          expect(activity_page3.pages[0].title.title, 'Cause-Effect Page');
+        });
+      });
+
+
+      test('cause_effect is length 2', () {
+        schedule(() {
+          expect(activity_page3.pages[0].fySet.cause_effects.length, 2);
+        });
+      });
+
+      test('cause and effect 1 is correct', () {
+        schedule(() {
+          expect(activity_page3.pages[0].fySet.cause_effects[0].cause, 'Cause 1 - Cats are really hungry.');
+          expect(activity_page3.pages[0].fySet.cause_effects[0].effect, 'Effect 1 - Cats want to catch mice.');
+        });
+      });
+
+      test('cause and effect 2 is correct', () {
+        schedule(() {
+          expect(activity_page3.pages[0].fySet.cause_effects[1].cause, 'Cause 2 - Mice are really hungry');
+          expect(activity_page3.pages[0].fySet.cause_effects[1].effect, 'Effect 2 - Mice want some cheese');
+        });
+      });
+
+      test('options are correct', () {
+        schedule(() {
+          expect(activity_page3.pages[0].fySet.options.options[0], 'Cause Incorrect option');
+          expect(activity_page3.pages[0].fySet.options.options[1], 'Effect incorrect option');
+        });
       });
     });
   });

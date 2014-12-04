@@ -1,7 +1,7 @@
 part of ac_spot_dart_test;
 
 class FyLineDrawingComponent extends PageComponent {
-  FyLineDrawingComponent(el) : super(el);
+  FyLineDrawingComponent.FyCauseEffectComponent(el) : super(el);
 
   clickToDraw() => component.fire('tap', onNode: component.shadowRoot.querySelector('#splash_text'));
 
@@ -44,7 +44,7 @@ fy_linedrawing_test() {
         el.drawingTitle = page.title;
         el.drawingImage = page.image;
 
-        component = new FyLineDrawingComponent(el);
+        component = new FyLineDrawingComponent.FyCauseEffectComponent(el);
 
 
         return component.flush();
@@ -68,7 +68,7 @@ fy_linedrawing_test() {
 
     test('title shows up in toolbar', () {
       schedule(() {
-        expect(component.titleToolbarText, 'Draw a dinosaur. Use the sketch if you need.');
+        expect(component.titleToolbarText.trim(), 'Draw a dinosaur. Use the sketch if you need.');
       });
     });
 

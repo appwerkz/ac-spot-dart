@@ -1,0 +1,114 @@
+<link rel="import" href="../../../packages/polymer/polymer.html">
+
+<link rel="import" href="../../../packages/core_elements/core_header_panel.html">
+<link rel="import" href="../../../packages/core_elements/core_toolbar.html">
+<link rel="import" href="../../../packages/core_elements/core_icon.html">
+<link rel="import" href="../../../packages/core_elements/core_icons.html">
+
+<link rel="import" href="../../../packages/paper_elements/paper_button.html">
+
+<link rel="import" href="../../../packages/ac_spot_dart/elements/fy_drawingtools.html">
+
+<polymer-element name="fy-character-map" attributes="characterMapTitle fyCharacterMap">
+  <template>
+    <style>
+    :host {
+      display: block;
+      width: 75%;
+      height: 100%;
+      background-color: lightblue;
+    }
+    
+    core-toolbar {
+      background-color: #fdcb0a;
+    }
+    
+    core-header-panel {
+      height: 100%;
+    }
+    
+    
+    #canvas {
+      width: 75%;
+    }
+    
+    #splash_text {
+      width: 75%;
+      height: 500px;
+    }
+    
+    paper-button {
+      color: white;
+    }
+    
+    paper-button#done {
+      background-color: red;
+    }
+    
+    div.dropTarget {
+      height: 50px;
+      width: 100px;
+      margin-top: 5px;
+      background-color: lightgrey;
+    }
+    
+    div.label {
+      text-align: center;
+    }
+    
+    div.draggable {
+      width: 100px;
+      height: 50px;
+      margin-left: 2px;
+      margin-right: 2px;
+      margin-top: 5px;
+      background-color: white;
+    }
+    
+    #task {
+      text-align: center;
+    }
+    
+    #task h3 {
+      background-color: white;
+      width: 55%;
+      height: 50px;
+    }
+    </style>
+    <core-header-panel layout vertical>
+      <core-toolbar horizontal layout center-center>{{ characterMapTitle.title }} <paper-button id="done" label="Done" hidden></paper-button></core-toolbar>
+      <div vertical layout fit>
+        <div id="task" layout horizontal flex center-center>
+          <h3 vertical layout center-center>{{ fyCharacterMap.label.title }}</h3>
+        </div>
+        <div vertical layout center-center style="width: 100%; height: 50%">
+          <div horizontal layout center-center style="width: 75%;">
+            <template repeat="{{ block in fyCharacterMap.blocks }}">
+              <div class="label" flex one>{{ block.label.title }}</div>
+            </template>
+          </div>
+          <div horizontal layout center-center style="width: 75%;">
+            <template repeat="{{ block in fyCharacterMap.blocks }}">
+              <div vertical layout flex one center-center>
+                <template repeat="{{ answer in block.answers }}">
+                  <div class="dropTarget" flex one>&nbsp;</div>
+                </template>
+              </div>
+            </template>
+          </div>
+        </div>
+        <div horizontal layout center-center>
+          <div horizontal layout center-justified wrap style="height: 50%; width: 75%" touch-action="none">
+            <template repeat="{{ block in fyCharacterMap.blocks }}">
+              <template repeat="{{ answer in block.answers }}">
+                <div class="draggable" on-trackstart="{{ trackStart }}" draggable="false">{{ answer.text }}</div>
+              </template>
+            </template>
+          </div>
+        </div>
+      </div>
+    </core-header-panel>
+    <div id="avatar">&nbsp;</div>
+  </template>
+  <script type="application/dart" src="fy_character_map.dart"></script>
+</polymer-element>

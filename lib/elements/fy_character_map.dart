@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'package:polymer/polymer.dart';
 
 import 'package:ac_spot_dart/ac_spot.dart' show Title, FyCharacterMap;
@@ -21,12 +22,13 @@ class FyCharacterMapElement extends DragAndDrop {
     addEventListener('drag-start', (e) {
       var dragInfo = e.detail;
       var color = '#f00';
-      dragInfo['avatar'].style.cssText = 'border: 3px solid $color; width: 32px; height: 32px; border-radius: 32px; background-color: whitesmoke';
+      dragInfo['avatar'].style.cssText = 'border: 3px solid $color; width: 100px; height: 50px; background-color: white';
       dragInfo['avatar'].append(
           $['avatar']
       );
-      dragInfo['dropTarget'] = dragInfo['event'].target;
-      print(dragInfo['event'].target);
+      $['avatar'].append(new Element.div() ..innerHtml = (dragInfo['event'].target as Element).innerHtml);
+      dragInfo['dragTarget'] = dragInfo['event'].target;
+      dragInfo['event'].target.hidden = true;
       dragInfo['drag'] = (_) {};
       dragInfo['drop'] = drop;
     });
@@ -34,8 +36,18 @@ class FyCharacterMapElement extends DragAndDrop {
 
   void drop(Map dropInfo) {
     if(dropInfo['dropTarget'].classes.contains('dropTarget')) {
-      print(dropInfo['text']);
-      dropInfo['dropTarget'].text = dropInfo['text'];
+      dropInfo['dropTarget'].append(dragInfo['dragTarget']);
+    } else {
+      var x = dragInfo['p']['x'] - this.getBoundingClientRect().left;
+      var y = dragInfo['p']['y'] - this.getBoundingClientRect().top;
+      dragInfo['dragTarget'].style
+        ..left = '${x}px'
+        ..top = '${y}px'
+        ..position = 'absolute'
+        ;
     }
+
+    dragInfo['dragTarget'].hidden = false;
+    $['avatar'].innerHtml = '';
   }
 }

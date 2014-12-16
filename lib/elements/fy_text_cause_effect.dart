@@ -19,17 +19,18 @@ class FyTextCauseEffectElement extends DragAndDrop {
   void attached() {
     super.attached();
 
-    addEventListener('drag-start', (e) {
-      var dragInfo = e.detail;
+    on['drag-start'].listen((e) {
+      dragInfo = e.detail;
       var color = '#f00';
       dragInfo['avatar'].style.cssText = 'border: 3px solid $color; width: 32px; height: 32px; border-radius: 32px; background-color: whitesmoke';
       dragInfo['avatar'].append(
           $['avatar']
       );
       dragInfo['dropTarget'] = dragInfo['event'].target;
-      print(dragInfo['event'].target);
       dragInfo['drag'] = (_) {};
       dragInfo['drop'] = drop;
+
+      print('drag-start');
     });
   }
 

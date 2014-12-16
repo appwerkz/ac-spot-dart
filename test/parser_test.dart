@@ -207,7 +207,7 @@ parser_test() {
       });
 
 
-      solo_test('Title is "Cause-Effect Page"', () {
+      test('Title is "Cause-Effect Page"', () {
         schedule(() {
           expect(activity_page3.pages[0].title.title, 'Cause-Effect Page');
         });

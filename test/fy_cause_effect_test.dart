@@ -6,6 +6,8 @@ class FyCauseEffectComponent extends PageComponent {
   FySet get fySet => component.fySet;
   set fySet(val) => component.fySet = val;
 
+  Completer _dragStartCompleter = new Completer();
+
   Title get causeEffectTitle => component.causeEffectTitle;
   set causeEffectTitle(val) => component.causeEffectTitle = val;
 
@@ -16,10 +18,18 @@ class FyCauseEffectComponent extends PageComponent {
   ElementList get causeDropTargets => component.shadowRoot.querySelectorAll('.causeDropTarget');
   ElementList get effectDropTargets => component.shadowRoot.querySelectorAll('.effectDropTarget');
   ElementList get draggables => component.shadowRoot.querySelectorAll('.draggable');
+
+  CustomEvent fireTrackStartOnDraggable(int draggable) => component.fire('trackstart', onNode: draggables[draggable]);
+  CustomEvent fireDragStart() => component.fire('drag-start', detail: component.dragInfo);
+  CustomEvent fireTrackOnDraggable(int draggable) => component.fire('track', onNode: component);
+  Future get dragStartFired => _dragStartCompleter.future;
+  createDragStartListener() => component.addEventListener('drag-start', (e) => _dragStartCompleter.complete());
+
+  get dragInfo => component.dragInfo;
 }
 
 fy_cause_effect_test() {
-  group('[fy-cause-effect', () {
+  group('[fy-cause-effect]', () {
     FyCauseEffectComponent component;
     Activity activity_page;
 
@@ -64,60 +74,136 @@ fy_cause_effect_test() {
       });
     });
 
-    solo_test('causeEffectTitle is "Cause-Effect Page"', () {
+    test('causeEffectTitle is "Cause-Effect Page"', () {
       schedule(() {
         expect(component.causeEffectTitle.title, 'Cause-Effect Page');
       });
     });
 
 
-    solo_test('taskText is "Match the cause with the effect.', () {
+    test('taskText is "Match the cause with the effect.', () {
       schedule(() {
         expect(component.taskText, 'Match the cause with the effect.');
       });
     });
 
-    solo_test('fySet.cause_effects is length of 2', () {
+    test('fySet.cause_effects is length of 2', () {
       schedule(() {
         expect(component.fySet.cause_effects.length, 2);
       });
     });
 
-    solo_test('fySet.cause_effects.first cause and effect is correct', () {
+    test('fySet.cause_effects.first cause and effect is correct', () {
       schedule(() {
         expect(component.fySet.cause_effects.first.cause, 'Cause 1 - Cats are really hungry.');
         expect(component.fySet.cause_effects.first.effect, 'Effect 1 - Cats want to catch mice.');
       });
     });
 
-    solo_test('fySet.question is "Cause-Effect Page"', () {
+    test('fySet.question is "Cause-Effect Page"', () {
       schedule(() {
         expect(component.causeEffectTitle.title, 'Cause-Effect Page');
       });
     });
 
-    solo_test('toolbarTitle is same as causeEffectTitle', () {
+    test('toolbarTitle is same as causeEffectTitle', () {
       schedule(() {
         expect(component.titleToolbarText.trim(), component.causeEffectTitle.title);
       });
     });
 
-    solo_test('causeDropTarget list is of length 2', () {
+    test('causeDropTarget list is of length 2', () {
       schedule(() {
         expect(component.causeDropTargets.toList().length, 2);
       });
     });
 
-    solo_test('effectDropTarget list is of length 2', () {
+    test('effectDropTarget list is of length 2', () {
       schedule(() {
         expect(component.effectDropTargets.toList().length, 2);
       });
     });
 
-    solo_test('draggables list is of length 6', () {
+    test('draggables list is of length 6', () {
       schedule(() {
         expect(component.draggables.toList().length, 6);
       });
     });
+
+    test('firing trackstart on a draggable fires "drag-start"', () {
+      schedule(() {
+        component.createDragStartListener();
+      });
+
+      schedule(() {
+        component.fireTrackStartOnDraggable(0);
+        expect(component.dragStartFired, completes);
+      });
+    });
+
+    test('firing trackstart on a draggable creates dragInfo Map', () {
+      schedule(() {
+        component.fireTrackStartOnDraggable(0);
+        expect(component.dragInfo, isNotNull);
+        expect(component.dragInfo, isMap);
+      });
+    });
+
+
+    test('firing trackstart on a draggable creates dragInfo Map with event key', () {
+      schedule(() {
+        component.fireTrackStartOnDraggable(0);
+        expect(component.dragInfo, contains('event'));
+      });
+    });
+
+    test('firing trackstart on a draggable creates dragInfo Map with avatar key', () {
+      schedule(() {
+        component.fireTrackStartOnDraggable(0);
+        expect(component.dragInfo, contains('avatar'));
+      });
+    });
+
+    test('firing trackstart on a draggable creates dragInfo Map with text key', () {
+      schedule(() {
+        component.fireTrackStartOnDraggable(0);
+        expect(component.dragInfo, contains('text'));
+      });
+    });
+
+//    test('firing trackstart on a draggable creates dragInfo Map with drag key', () {
+//      schedule(() {
+//        var completer = new Completer();
+//
+//        component.fireTrackStartOnDraggable(0);
+//        component.fireDragStart();
+//        component.fireTrackOnDraggable(0);
+//        new Timer(new Duration(milliseconds: 500), () => completer.complete());
+//
+//        return Future.wait([component.flush(), completer.future]);
+//      });
+//
+//      schedule(() {
+//        expect(component.dragInfo, contains('drag'));
+//        expect(component.component.dragging, isTrue);
+//      });
+//    });
+//
+//    test('avatar width is 32px', () {
+//      schedule(() {
+//        var completer = new Completer();
+//
+//        component.fireTrackStartOnDraggable(0);
+//        component.fireDragStart();
+//        component.fireTrackOnDraggable(0);
+//        new Timer(new Duration(milliseconds: 500), () => completer.complete());
+//
+//        return Future.wait([component.flush(), completer.future]);
+//      });
+//
+//      schedule(() {
+//        expect(component.component.avatar.style.width, '32px');
+//      });
+//    });
   });
 }

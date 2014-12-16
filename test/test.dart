@@ -13,6 +13,7 @@ part 'parser_test.dart';
 part 'fy_ac_component_m_info_test.dart';
 part 'fy_linedrawing_test.dart';
 part 'fy_cause_effect_test.dart';
+part 'fy_character_map_test.dart';
 
 main() {
   useHtmlConfiguration(true);

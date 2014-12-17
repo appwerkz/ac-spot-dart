@@ -36,10 +36,16 @@ class FyCharacterMapElement extends DragAndDrop {
 
   void drop(Map dropInfo) {
     if(dropInfo['dropTarget'].classes.contains('dropTarget')) {
+      dropInfo['dropTarget'].text = '';
       dropInfo['dropTarget'].append(dragInfo['dragTarget']);
+      (dragInfo['dragTarget'] as Element).style
+        ..position = ''
+        ..left = '0px'
+        ..top = '0px'
+        ;
     } else {
       var x = dragInfo['p']['x'] - this.getBoundingClientRect().left;
-      var y = dragInfo['p']['y'] - this.getBoundingClientRect().top;
+      var y = dragInfo['p']['y'] - this.getBoundingClientRect().top - 60;
       dragInfo['dragTarget'].style
         ..left = '${x}px'
         ..top = '${y}px'
